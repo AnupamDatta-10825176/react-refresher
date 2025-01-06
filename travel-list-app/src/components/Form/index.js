@@ -1,8 +1,13 @@
 import "./Form.css";
 
 const Form = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("submitted");
+  };
+
   return (
-    <form className="add-form">
+    <form className="add-form" onSubmit={(event) => handleSubmit(event)}>
       <h3>What do you need for your Trip? 😍</h3>
       <select>
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
@@ -12,7 +17,7 @@ const Form = () => {
         ))}
       </select>
       <input type="text" placeholder="Item..." />
-      <button>add</button>
+      <button type="submit">add</button>
     </form>
   );
 };
