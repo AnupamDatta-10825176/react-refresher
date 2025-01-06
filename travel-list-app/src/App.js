@@ -1,5 +1,13 @@
+import Logo from "./components/Logo";
+
+import "./App.css";
+
 const App = () => {
-  return <div>Initial stage</div>;
+  return (
+    <div className="app">
+      <Logo />
+    </div>
+  );
 };
 
 export default App;

@@ -1,5 +1,7 @@
+import "./Logo.css";
+
 const Logo = () => {
-  return <div>🌴 Far Away 🧳</div>;
+  return <h1>🌴 Far Away 🧳</h1>;
 };
 
 export default Logo;
