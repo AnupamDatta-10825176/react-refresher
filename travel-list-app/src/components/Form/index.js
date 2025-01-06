@@ -7,12 +7,19 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // save nothing if description field is not profided
+    if (!description) return;
+
     console.log(`Input: ${description}`);
     console.log(`Select: ${quantity}`);
+
+    // reset items and description to defaults
+    setDescription("");
+    setQuantity(1);
   };
 
   const handleOnchangeQuantity = (event) => {
-    setQuantity(event.target.value);
+    setQuantity(Number(event.target.value));
   };
 
   const handleOnchangeItem = (event) => {
