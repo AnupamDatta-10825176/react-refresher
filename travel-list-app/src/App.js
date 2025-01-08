@@ -9,12 +9,18 @@ import "./App.css";
 const App = () => {
   const [items, setItems] = useState([]);
 
-  // add a new item to the list
+  /**
+   * @description add a new item to the list
+   * @param {object} item new item to be added
+   */
   const handleAddItem = (item) => {
     setItems((prevState) => [...prevState, item]);
   };
 
-  // delete an item from the list
+  /**
+   * @description delete an item from the list
+   * @param {GUID} id id of the item to delete
+   */
   const handleDeleteItem = (id) => {
     // Get the item from the item list
     const itemToDelete = items.find((item) => item.id === id);
@@ -25,7 +31,10 @@ const App = () => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // set packed status
+  /**
+   * @description set packed status
+   * @param {GUID} id Id of the item whose packed status want to change.
+   */
   const handleToggleITem = (id) => {
     setItems((prevState) =>
       prevState.map((item) =>
@@ -34,7 +43,9 @@ const App = () => {
     );
   };
 
-  // remove all items from list
+  /**
+   * @description remove all items from list
+   */
   const handleClearList = () => {
     const confirmed = window.confirm(
       "Are you sure you want to delete all list item?"
