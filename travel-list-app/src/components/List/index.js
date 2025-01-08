@@ -1,13 +1,17 @@
 import Item from "./Item";
 import "./List.css";
-import { initialItems } from "../../data";
 
-const PackingList = () => {
+const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
-          <Item item={item} key={item.id} />
+        {items.map((item) => (
+          <Item
+            item={item}
+            key={item.id}
+            handleOnClick={onDeleteItem}
+            onToggleItem={onToggleItem}
+          />
         ))}
       </ul>
     </div>
