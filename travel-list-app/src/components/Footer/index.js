@@ -18,8 +18,10 @@ const Footer = ({ items }) => {
             <span>
               {completion === 0
                 ? " You must start packing them.😮"
-                : ` you already packed ${itemPacked} items (${completion})%.`}
-            </span>{" "}
+                : ` you already packed ${itemPacked} items (${
+                    isNaN(completion) ? 0 : completion
+                  })%.`}
+            </span>
           </em>
         </span>
       )}
