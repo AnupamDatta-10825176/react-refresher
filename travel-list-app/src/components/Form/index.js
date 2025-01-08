@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./Form.css";
 
-const Form = () => {
+const Form = ({ onAddItem }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -10,8 +11,16 @@ const Form = () => {
     // save nothing if description field is not profided
     if (!description) return;
 
-    console.log(`Input: ${description}`);
-    console.log(`Select: ${quantity}`);
+    const newItem = {
+      id: uuidv4().toString(),
+      description: description,
+      quantity: quantity,
+      packed: false,
+    };
+    console.log(newItem);
+
+    // add to the list of items
+    onAddItem(newItem);
 
     // reset items and description to defaults
     setDescription("");

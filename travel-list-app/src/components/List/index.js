@@ -1,12 +1,12 @@
 import Item from "./Item";
 import "./List.css";
-import { initialItems } from "../../data";
+// import { initialItems } from "../../data";
 
-const PackingList = () => {
+const PackingList = ({ items }) => {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>
