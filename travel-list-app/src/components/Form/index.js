@@ -22,7 +22,6 @@ const Form = ({ onAddItem }) => {
       quantity: quantity,
       packed: false,
     };
-    console.log(newItem);
 
     // add to the list of items
     onAddItem(newItem);
