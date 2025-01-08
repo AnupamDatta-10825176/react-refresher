@@ -5,7 +5,7 @@ const Item = ({ item, handleOnClick, onToggleItem }) => {
     <li>
       <input type="checkbox" onChange={() => onToggleItem(item.id)} />
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-        {item.description} {item.quantity}
+        {item.quantity} {item.description}
       </span>
       <button onClick={() => handleOnClick(item.id)}>❌</button>
     </li>
