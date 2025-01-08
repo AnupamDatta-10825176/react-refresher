@@ -2,9 +2,10 @@ import { useState } from "react";
 import Item from "./Item";
 import "./List.css";
 
-const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
+const PackingList = ({ items, onDeleteItem, onToggleItem, onClearList }) => {
   const [sortBy, setSortBy] = useState("input");
 
+  // handle sort by functionality
   let sortedItems = [];
   switch (sortBy) {
     case "input":
@@ -44,6 +45,8 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
           <option value="packed">Sort by Packed Status</option>
         </select>
       </div>
+
+      <button onClick={onClearList}>Clear List</button>
     </div>
   );
 };
