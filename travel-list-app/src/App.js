@@ -39,7 +39,7 @@ const App = () => {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleITem}
       />
-      <Footer />
+      <Footer items={items} />
     </div>
   );
 };
