@@ -12,11 +12,20 @@ const App = () => {
     setItems((prevState) => [...prevState, item]);
   };
 
+  const handleDeleteItem = (id) => {
+    // Get the item from the item list
+    const itemToDelete = items.find((item) => item.id === id);
+    // show alert before removing
+    alert(`Are you sure you want to delete Item: ${itemToDelete.description}`);
+
+    // remove the item from list
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
   return (
     <div className="app">
       <Logo />
       <Form onAddItem={handleAddItem} />
-      <PackingList items={items} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Footer />
     </div>
   );

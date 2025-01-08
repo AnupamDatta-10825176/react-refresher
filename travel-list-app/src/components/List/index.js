@@ -1,13 +1,12 @@
 import Item from "./Item";
 import "./List.css";
-// import { initialItems } from "../../data";
 
-const PackingList = ({ items }) => {
+const PackingList = ({ items, onDeleteItem }) => {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item item={item} key={item.id} handleOnClick={onDeleteItem} />
         ))}
       </ul>
     </div>
