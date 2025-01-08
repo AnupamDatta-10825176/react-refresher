@@ -21,11 +21,24 @@ const App = () => {
     // remove the item from list
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
+
+  const handleToggleITem = (id) => {
+    setItems((prevState) =>
+      prevState.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  };
+
   return (
     <div className="app">
       <Logo />
       <Form onAddItem={handleAddItem} />
-      <PackingList items={items} onDeleteItem={handleDeleteItem} />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggleItem={handleToggleITem}
+      />
       <Footer />
     </div>
   );
