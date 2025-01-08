@@ -6,6 +6,11 @@ const Form = ({ onAddItem }) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  /**
+   *
+   * @param {*} event
+   * @description {"create a new item with the description and quantity."}
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
     // save nothing if description field is not profided
@@ -27,10 +32,18 @@ const Form = ({ onAddItem }) => {
     setQuantity(1);
   };
 
+  /**
+   * @description sets value of quantity.
+   * @param {*} event
+   */
   const handleOnchangeQuantity = (event) => {
     setQuantity(Number(event.target.value));
   };
 
+  /**
+   * @description sets value of description
+   * @param {*} event
+   */
   const handleOnchangeItem = (event) => {
     setDescription(event.target.value);
   };
