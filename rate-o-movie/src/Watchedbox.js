@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import WatchedSummery from "./WatchedSummery";
-import WatchedList from "./WatchedList";
+import WatchedMoviesList from "./WatchedList";
 import { tempWatchedData } from "./data";
 
 const WatchedBox = () => {
@@ -19,7 +19,7 @@ const WatchedBox = () => {
       {isOpen2 && (
         <>
           <WatchedSummery watched={watched} />
-          <WatchedList watched={watched} />
+          <WatchedMoviesList watched={watched} />
         </>
       )}
     </div>

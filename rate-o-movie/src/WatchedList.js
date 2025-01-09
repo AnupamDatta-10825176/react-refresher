@@ -1,4 +1,4 @@
-const WatchedList = ({ watched }) => {
+const WatchedMoviesList = ({ watched }) => {
   return (
     <ul className="list">
       {watched.map((movie) => (
@@ -25,4 +25,4 @@ const WatchedList = ({ watched }) => {
   );
 };
 
-export default WatchedList;
+export default WatchedMoviesList;
