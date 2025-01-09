@@ -1,13 +1,11 @@
 import { useState } from "react";
+import Logo from "./Logo";
 
 const Navbar = ({ movies }) => {
   const [query, setQuery] = useState("");
   return (
     <nav className="nav-bar">
-      <div className="logo">
-        <span role="img">🍿</span>
-        <h1>usePopcorn</h1>
-      </div>
+      <Logo />
       <input
         className="search"
         type="text"
