@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+
+import Button from "../Button";
 import "./Form.css";
 
 const Form = ({ onAddItem }) => {
@@ -64,7 +66,7 @@ const Form = ({ onAddItem }) => {
         value={description}
         onChange={(event) => handleOnchangeItem(event)}
       />
-      <button type="submit">add</button>
+      <Button btnType="submit">add</Button>
     </form>
   );
 };
