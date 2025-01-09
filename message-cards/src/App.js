@@ -1,9 +1,11 @@
+import Cards from "./components/Cards";
+
 import "./App.css";
 
 const App = () => {
   return (
     <div>
-      <h2>App Component</h2>
+      <Cards />
     </div>
   );
 };
