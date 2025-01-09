@@ -1,14 +1,13 @@
 import Logo from "./Logo";
 import Search from "./Search";
+import NumResults from "./NumResults";
 
 const Navbar = ({ movies }) => {
   return (
     <nav className="nav-bar">
       <Logo />
       <Search />
-      <p className="num-results">
-        Found <strong>{movies.length}</strong> results
-      </p>
+      <NumResults movies={movies} />
     </nav>
   );
 };
