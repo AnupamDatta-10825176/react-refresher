@@ -13,10 +13,17 @@ const starContainerStyle = {
 /**
  * @description Reusable component which helps in setting up star rating.
  * @param {number} maxRating   Maximum number of stars to display for rating. If not defined
+ * @param {number} size Size of the star and the rating number.
+ * @param {string} color    color for the stars and rating number.
  * default value is taken as 5.
  * @returns
  */
-const StarRating = ({ maxRating = 5, size = 48, color = "#fcc419" }) => {
+const StarRating = ({
+  maxRating = 5,
+  size = 48,
+  color = "#fcc419",
+  className = "",
+}) => {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
 
@@ -28,7 +35,7 @@ const StarRating = ({ maxRating = 5, size = 48, color = "#fcc419" }) => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} className={className}>
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
