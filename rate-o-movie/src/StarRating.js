@@ -24,6 +24,7 @@ const StarRating = ({
   color = "#fcc419",
   className = "",
   messages = [],
+  onSetRating,
 }) => {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
@@ -35,6 +36,11 @@ const StarRating = ({
     fontSize: `${size / 1.5}px`,
   };
 
+  const handleRating = (rating) => {
+    setRating(rating);
+    onSetRating(rating);
+  };
+
   return (
     <div style={containerStyle} className={className}>
       <div style={starContainerStyle}>
@@ -42,7 +48,7 @@ const StarRating = ({
           <Star
             key={i}
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
-            handleOnClick={() => setRating(i + 1)}
+            handleOnClick={() => handleRating(i + 1)}
             handleMounseEnter={() => setTempRating(i + 1)}
             handleMounseLeave={() => setTempRating(0)}
             color={color}
