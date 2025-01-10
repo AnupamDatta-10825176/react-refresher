@@ -23,6 +23,7 @@ const StarRating = ({
   size = 48,
   color = "#fcc419",
   className = "",
+  messages = [],
 }) => {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
@@ -49,7 +50,14 @@ const StarRating = ({
           />
         ))}
       </div>
-      <p style={textStyle}>{tempRating || rating || ""}</p>
+
+      <p style={textStyle}>
+        {messages.length === maxRating
+          ? tempRating
+            ? messages[tempRating - 1]
+            : messages[rating - 1]
+          : tempRating || rating || ""}
+      </p>
     </div>
   );
 };
