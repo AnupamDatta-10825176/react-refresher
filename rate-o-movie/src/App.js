@@ -1,5 +1,7 @@
-import { useState } from "react";
+// external libraries
+import { useState, useEffect } from "react";
 
+// Custom components
 import Navbar from "./Navbar";
 import Main from "./Main";
 import NumResults from "./NumResults";
@@ -9,11 +11,20 @@ import WatchedBox from "./Watchedbox";
 import MovieList from "./MovieList";
 import WatchedSummery from "./WatchedSummery";
 import WatchedMoviesList from "./WatchedList";
-import { tempMovieData, tempWatchedData } from "./data";
+
+// data and constants
+import { tempWatchedData } from "./data";
+import { movieApiURL } from "./constants";
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
+
+  useEffect(() => {
+    fetch(`${movieApiURL}s=gravity`)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.Search));
+  }, []);
 
   return (
     <>
