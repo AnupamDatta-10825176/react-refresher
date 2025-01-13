@@ -21,9 +21,12 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
 
   useEffect(() => {
-    fetch(`${movieApiURL}s=gravity`)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.Search));
+    async function fetchData() {
+      const res = await fetch(`${movieApiURL}s=gravity`);
+      const resJson = await res.json();
+      setMovies(resJson.Search);
+    }
+    fetchData();
   }, []);
 
   return (
