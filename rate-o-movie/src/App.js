@@ -12,15 +12,19 @@ import MovieList from "./MovieList";
 import WatchedSummery from "./WatchedSummery";
 import WatchedMoviesList from "./WatchedList";
 import Loading from "./Loading";
+import ErrorMessage from "./Error";
 
 // data and constants
 import { tempWatchedData } from "./data";
 import { movieApiURL } from "./constants";
 
+const movieName = "jkjfdjfk";
+
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     // start showing loading message
@@ -28,13 +32,28 @@ export default function App() {
 
     // fetch data from external api
     async function fetchData() {
-      const res = await fetch(`${movieApiURL}s=gravity`);
-      const resJson = await res.json();
-      // update movies with data fetched based on query.
-      setMovies(resJson.Search);
+      try {
+        const res = await fetch(`${movieApiURL}s=${movieName}`);
+        // throw error if counter issue during fetching data
+        if (!res.ok) {
+          throw new Error("Something went wrong while fetching the data");
+        }
 
-      // end showing loading message
-      setIsLoading(false);
+        // parse response data
+        const resJson = await res.json();
+
+        // if no movie with the name entered is found throw error.
+        if (resJson.Response === "False") {
+          throw new Error("Movie not found");
+        }
+        // update movies with data fetched based on query.
+        setMovies(resJson.Search);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        // end showing loading message
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, []);
@@ -47,7 +66,13 @@ export default function App() {
       </Navbar>
       <Main>
         <ListBox>
-          {isLoading ? <Loading /> : <MovieList movies={movies} />}
+          {/* {isLoading ? <Loading /> : <MovieList movies={movies} />} */}
+          {/* loading stage */}
+          {isLoading && <Loading />}
+          {/* if no error is there */}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {/* if we encounter any error during data fetching */}
+          {error && <ErrorMessage message={error} />}
         </ListBox>
         <WatchedBox>
           <WatchedSummery watched={watched} />
