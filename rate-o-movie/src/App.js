@@ -18,11 +18,10 @@ import ErrorMessage from "./Error";
 import { tempWatchedData } from "./data";
 import { movieApiURL } from "./constants";
 
-const movieName = "jkjfdjfk";
-
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -30,10 +29,13 @@ export default function App() {
     // start showing loading message
     setIsLoading(true);
 
+    // reset error message
+    setError("");
+
     // fetch data from external api
     async function fetchData() {
       try {
-        const res = await fetch(`${movieApiURL}s=${movieName}`);
+        const res = await fetch(`${movieApiURL}s=${query}`);
         // throw error if counter issue during fetching data
         if (!res.ok) {
           throw new Error("Something went wrong while fetching the data");
@@ -55,13 +57,19 @@ export default function App() {
         setIsLoading(false);
       }
     }
+    if (query.length < 3) {
+      setMovies([]);
+      setError("");
+      setIsLoading(false);
+      return;
+    }
     fetchData();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
       <Main>
