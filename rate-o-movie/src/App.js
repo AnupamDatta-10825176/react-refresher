@@ -21,11 +21,20 @@ import { movieApiURL } from "./constants";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [selectedID, setSelectedID] = useState("tt1727388");
+  const [selectedID, setSelectedID] = useState(null);
   const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  function handleSelectedID(movieID) {
+    // if click on the same movie name close the selected movie detail
+    setSelectedID((selectedID) => (selectedID === movieID ? null : movieID));
+  }
+
+  function handleClose() {
+    setSelectedID(null);
+  }
 
   useEffect(() => {
     // start showing loading message
@@ -80,13 +89,15 @@ export default function App() {
           {/* loading stage */}
           {isLoading && <Loading />}
           {/* if no error is there */}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList movies={movies} handleSelectedID={handleSelectedID} />
+          )}
           {/* if we encounter any error during data fetching */}
           {error && <ErrorMessage message={error} />}
         </ListBox>
         <WatchedBox>
           {selectedID ? (
-            <MovieDetails selectedID={selectedID} />
+            <MovieDetails selectedID={selectedID} handleClose={handleClose} />
           ) : (
             <>
               <WatchedSummery watched={watched} />
