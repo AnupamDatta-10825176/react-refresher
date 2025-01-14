@@ -9,6 +9,7 @@ import Search from "./Search";
 import ListBox from "./Listbox";
 import WatchedBox from "./Watchedbox";
 import MovieList from "./MovieList";
+import MovieDetails from "./MovieDetails";
 import WatchedSummery from "./WatchedSummery";
 import WatchedMoviesList from "./WatchedList";
 import Loading from "./Loading";
@@ -20,6 +21,7 @@ import { movieApiURL } from "./constants";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
+  const [selectedID, setSelectedID] = useState("tt1727388");
   const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -83,8 +85,14 @@ export default function App() {
           {error && <ErrorMessage message={error} />}
         </ListBox>
         <WatchedBox>
-          <WatchedSummery watched={watched} />
-          <WatchedMoviesList watched={watched} />
+          {selectedID ? (
+            <MovieDetails selectedID={selectedID} />
+          ) : (
+            <>
+              <WatchedSummery watched={watched} />
+              <WatchedMoviesList watched={watched} />
+            </>
+          )}
         </WatchedBox>
       </Main>
     </>
