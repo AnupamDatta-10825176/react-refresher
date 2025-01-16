@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import StarRating from "./StarRating";
+
 import { movieApiURL } from "./constants";
 
 const MovieDetails = ({ selectedID, handleClose }) => {
@@ -39,6 +41,9 @@ const MovieDetails = ({ selectedID, handleClose }) => {
           {released} &bull; {runtime}
         </p>
         <p>{genre}</p>
+        <div className="rating">
+          <StarRating maxRating={10} size={20} />
+        </div>
         <p>
           <span>⭐</span>
           {imdbRating} IMDb Rating
@@ -50,7 +55,8 @@ const MovieDetails = ({ selectedID, handleClose }) => {
           <p>Starring {actors}</p>
           <p>Directed by {director}</p>
           <p>
-            {language.split(",").length > 1 ? "Languages" : "Language"}:&nbsp;
+            {language && language.match(/.*,.* /) ? "Languages" : "Language"}
+            :&nbsp;
             {language}
           </p>
         </section>
