@@ -12,7 +12,7 @@ const stylePoster = {
   borderRadius: "5%",
 };
 
-const MovieDetails = ({ selectedID, handleClose }) => {
+const MovieDetails = ({ selectedID, handleClose, onAddWatched }) => {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +27,21 @@ const MovieDetails = ({ selectedID, handleClose }) => {
     imdbRating,
     Runtime: runtime,
     Director: director,
+    UserRating: userRating,
   } = movie;
+
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedID,
+      Poster: poster,
+      Title: title,
+      imdbRating: Number(imdbRating),
+      userRating: Number(userRating),
+      runtime: Number(runtime.split(" ").at(0)),
+    };
+
+    onAddWatched(newWatchedMovie);
+  }
 
   useEffect(() => {
     async function getMovieDetail() {
@@ -71,6 +85,9 @@ const MovieDetails = ({ selectedID, handleClose }) => {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={20} />
+              <button className="btn-add" onClick={handleAdd}>
+                + Add to watched
+              </button>
             </div>
             <p>
               <em>{plot}</em>

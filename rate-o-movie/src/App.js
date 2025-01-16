@@ -16,13 +16,12 @@ import Loading from "./Loading";
 import ErrorMessage from "./Error";
 
 // data and constants
-import { tempWatchedData } from "./data";
 import { movieApiURL } from "./constants";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [selectedID, setSelectedID] = useState(null);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -34,6 +33,11 @@ export default function App() {
 
   function handleClose() {
     setSelectedID(null);
+  }
+
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+    console.log(watched);
   }
 
   useEffect(() => {
@@ -97,7 +101,11 @@ export default function App() {
         </ListBox>
         <WatchedBox>
           {selectedID ? (
-            <MovieDetails selectedID={selectedID} handleClose={handleClose} />
+            <MovieDetails
+              selectedID={selectedID}
+              handleClose={handleClose}
+              onAddWatched={handleAddWatched}
+            />
           ) : (
             <>
               <WatchedSummery watched={watched} />
