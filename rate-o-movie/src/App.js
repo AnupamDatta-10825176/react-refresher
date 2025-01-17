@@ -109,7 +109,7 @@ export default function App() {
           ) : (
             <>
               <WatchedSummery watched={watched} />
-              <WatchedMoviesList watched={watched} />
+              <WatchedMoviesList watched={watched} setWatched={setWatched} />
             </>
           )}
         </WatchedBox>
