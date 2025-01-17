@@ -12,9 +12,15 @@ const stylePoster = {
   borderRadius: "5%",
 };
 
-const MovieDetails = ({ selectedID, handleClose, onAddWatched }) => {
+const MovieDetails = ({ selectedID, handleClose, onAddWatched, watched }) => {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState("");
+
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedID);
+  const watchMovieUserRating = watched.find(
+    (movie) => movie.imdbID
+  )?.userRating;
 
   const {
     Title: title,
@@ -27,7 +33,6 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched }) => {
     imdbRating,
     Runtime: runtime,
     Director: director,
-    UserRating: userRating,
   } = movie;
 
   function handleAdd() {
@@ -41,6 +46,9 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched }) => {
     };
 
     onAddWatched(newWatchedMovie);
+
+    // close the watched movie detail after added to watched list
+    handleClose();
   }
 
   useEffect(() => {
@@ -84,10 +92,25 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched }) => {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={20} />
-              <button className="btn-add" onClick={handleAdd}>
-                + Add to watched
-              </button>
+              {!isWatched ? (
+                <>
+                  <StarRating
+                    maxRating={10}
+                    size={20}
+                    onSetRating={setUserRating}
+                  />
+                  {userRating > 0 && (
+                    <button className="btn-add" onClick={handleAdd}>
+                      + Add to watched
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p>
+                  You have rated this movie {watchMovieUserRating}
+                  <span>⭐</span>
+                </p>
+              )}
             </div>
             <p>
               <em>{plot}</em>
