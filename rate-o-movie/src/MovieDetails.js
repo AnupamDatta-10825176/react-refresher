@@ -53,6 +53,7 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched, watched }) => {
     handleClose();
   }
 
+  // fetch movie details from the api
   useEffect(() => {
     async function getMovieDetail() {
       setIsLoading(true);
@@ -63,6 +64,11 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched, watched }) => {
     }
     getMovieDetail();
   }, [selectedID]);
+
+  // set title of the page based on movie title
+  useEffect(() => {
+    document.title = `Movie | ${title}`;
+  }, [title]);
 
   return (
     <div className="details">
