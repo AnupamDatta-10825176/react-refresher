@@ -42,7 +42,9 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched, watched }) => {
       Title: title,
       imdbRating: Number(imdbRating),
       userRating: Number(userRating),
-      runtime: Number(runtime.split(" ").at(0)),
+      runtime: isNaN(Number(runtime.split(" ").at(0)))
+        ? 0
+        : Number(runtime.split(" ").at(0)),
     };
 
     onAddWatched(newWatchedMovie);
