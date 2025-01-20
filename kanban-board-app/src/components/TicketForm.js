@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { v4 as UUID } from "uuid";
+
+import { ADD_TICKET } from "../constants";
 import "../styles.css";
 
 const priorityLabels = {
@@ -8,7 +10,7 @@ const priorityLabels = {
   3: "High",
 };
 
-const TicketForm = () => {
+const TicketForm = ({ dispatch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(1);
@@ -28,10 +30,13 @@ const TicketForm = () => {
       id: UUID(),
       title,
       description,
-      priority,
+      priority: Number(priority),
     };
 
-    console.log(newTicketData);
+    dispatch({
+      type: ADD_TICKET,
+      payload: newTicketData,
+    });
 
     // clear the form after submit
     clearForm();
@@ -64,8 +69,8 @@ const TicketForm = () => {
             <input
               type="radio"
               className="priority-input "
-              value={val}
-              checked={priority === val}
+              value={Number(val)}
+              checked={priority === Number(val)}
               onChange={(e) => setPriority(e.target.value)}
             />
             {lbl}
