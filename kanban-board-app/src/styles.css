@@ -61,6 +61,7 @@ label {
 .priority-input {
   margin-right: 5px;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .form-input {
