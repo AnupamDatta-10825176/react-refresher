@@ -16,10 +16,10 @@ const App = () => {
       <TicketForm dispatch={dispatch} />
 
       {state.tickets.length > 0 && (
-        <>
+        <div className="results">
           <h2>All Tickets</h2>
           <TicketList tickets={state.tickets} dispatch={dispatch} />
-        </>
+        </div>
       )}
     </div>
   );

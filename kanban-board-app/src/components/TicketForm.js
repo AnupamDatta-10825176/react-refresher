@@ -13,12 +13,12 @@ const priorityLabels = {
 const TicketForm = ({ dispatch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState(1);
+  const [priority, setPriority] = useState("1");
 
   const clearForm = () => {
     setTitle("");
     setDescription("");
-    setPriority(1);
+    setPriority("1");
   };
 
   const handleSubmit = (e) => {
@@ -30,7 +30,7 @@ const TicketForm = ({ dispatch }) => {
       id: UUID(),
       title,
       description,
-      priority: Number(priority),
+      priority,
     };
 
     dispatch({
@@ -69,8 +69,8 @@ const TicketForm = ({ dispatch }) => {
             <input
               type="radio"
               className="priority-input "
-              value={Number(val)}
-              checked={priority === Number(val)}
+              value={val}
+              checked={priority === val}
               onChange={(e) => setPriority(e.target.value)}
             />
             {lbl}
