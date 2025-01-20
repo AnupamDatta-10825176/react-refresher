@@ -67,7 +67,12 @@ const MovieDetails = ({ selectedID, handleClose, onAddWatched, watched }) => {
 
   // set title of the page based on movie title
   useEffect(() => {
+    if (!document.title) return;
     document.title = `Movie | ${title}`;
+
+    return () => {
+      document.title = "RateOmovie";
+    };
   }, [title]);
 
   return (

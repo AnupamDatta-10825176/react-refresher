@@ -40,6 +40,7 @@ export default function App() {
   }
 
   useEffect(() => {
+    const controller = new AbortController();
     // start showing loading message
     setIsLoading(true);
 
@@ -49,7 +50,9 @@ export default function App() {
     // fetch data from external api
     async function fetchData() {
       try {
-        const res = await fetch(`${movieApiURL}s=${query}`);
+        const res = await fetch(`${movieApiURL}s=${query}`, {
+          signal: controller.signal,
+        });
         // throw error if counter issue during fetching data
         if (!res.ok) {
           throw new Error("Something went wrong while fetching the data");
@@ -65,7 +68,9 @@ export default function App() {
         // update movies with data fetched based on query.
         setMovies(resJson.Search);
       } catch (err) {
-        setError(err.message);
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
       } finally {
         // end showing loading message
         setIsLoading(false);
@@ -78,6 +83,10 @@ export default function App() {
       return;
     }
     fetchData();
+
+    return function () {
+      controller.abort();
+    };
   }, [query]);
 
   return (
