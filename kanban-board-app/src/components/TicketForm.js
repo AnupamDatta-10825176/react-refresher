@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as UUID } from "uuid";
 import "../styles.css";
 
 const priorityLabels = {
@@ -20,7 +21,17 @@ const TicketForm = () => {
 
   const handleSubmit = (e) => {
     // handle submit logic
-    e.preventDefault();
+    e.preventDefault(); // prevent default behaviour
+
+    // create new ticket object
+    const newTicketData = {
+      id: UUID(),
+      title,
+      description,
+      priority,
+    };
+
+    console.log(newTicketData);
 
     // clear the form after submit
     clearForm();
