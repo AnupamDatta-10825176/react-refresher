@@ -21,10 +21,13 @@ import { movieApiURL } from "./constants";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [selectedID, setSelectedID] = useState(null);
-  const [watched, setWatched] = useState([]);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [watched, setWatched] = useState(() => {
+    const storedWatchedMovies = localStorage.getItem("watchedMovies");
+    return JSON.parse(storedWatchedMovies);
+  });
 
   function handleSelectedID(movieID) {
     // if click on the same movie name close the selected movie detail
@@ -38,6 +41,10 @@ export default function App() {
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
   }
+
+  useEffect(() => {
+    localStorage.setItem("watchedMovies", JSON.stringify(watched));
+  }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
