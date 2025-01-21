@@ -15,6 +15,9 @@ import WatchedMoviesList from "./WatchedList";
 import Loading from "./Loading";
 import ErrorMessage from "./Error";
 
+// Custom hooks
+import { useLocalStorageState } from "./useLocalStorageState";
+
 // data and constants
 import { movieApiURL } from "./constants";
 
@@ -24,10 +27,13 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [watched, setWatched] = useState(() => {
-    const storedWatchedMovies = localStorage.getItem("watchedMovies");
-    return JSON.parse(storedWatchedMovies);
-  });
+
+  const [watched, setWatched] = useLocalStorageState([], "watchedMovies");
+
+  // const [watched, setWatched] = useState(() => {
+  //   const storedWatchedMovies = localStorage.getItem("watchedMovies");
+  //   return JSON.parse(storedWatchedMovies);
+  // });
 
   function handleSelectedID(movieID) {
     // if click on the same movie name close the selected movie detail
@@ -42,9 +48,9 @@ export default function App() {
     setWatched((watched) => [...watched, movie]);
   }
 
-  useEffect(() => {
-    localStorage.setItem("watchedMovies", JSON.stringify(watched));
-  }, [watched]);
+  // useEffect(() => {
+  //   localStorage.setItem("watchedMovies", JSON.stringify(watched));
+  // }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
