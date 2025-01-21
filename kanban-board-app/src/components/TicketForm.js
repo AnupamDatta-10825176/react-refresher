@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as UUID } from "uuid";
 
-import { ADD_TICKET, UPDATE_TICKET } from "../constants";
+import { ADD_TICKET, UPDATE_TICKET, CLEAR_EDITING_TICKET } from "../constants";
 import "../styles.css";
 
 const priorityLabels = {
@@ -52,6 +52,12 @@ const TicketForm = ({ dispatch, editingTicket }) => {
     clearForm();
   };
 
+  const handleBtnCancel = () => {
+    clearForm();
+    // dispatch the action to set the editing ticket to null
+    dispatch({ type: CLEAR_EDITING_TICKET });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -91,6 +97,12 @@ const TicketForm = ({ dispatch, editingTicket }) => {
       <button type="submit" className="button">
         Submit
       </button>
+
+      {editingTicket && (
+        <button className="button button-warning" onClick={handleBtnCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 };
