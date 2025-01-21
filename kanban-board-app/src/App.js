@@ -7,13 +7,13 @@ import { ticketReducer } from "./reducers/ticketReducer";
 import "./styles.css";
 
 const App = () => {
-  const initialState = { tickets: [] };
+  const initialState = { tickets: [], editingTicket: null };
   const [state, dispatch] = useReducer(ticketReducer, initialState);
 
   return (
     <div className="container">
       <h1>Dummy Kanban Board</h1>
-      <TicketForm dispatch={dispatch} />
+      <TicketForm dispatch={dispatch} editingTicket={state.editingTicket} />
 
       {state.tickets.length > 0 && (
         <div className="results">

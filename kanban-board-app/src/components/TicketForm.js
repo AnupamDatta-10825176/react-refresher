@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as UUID } from "uuid";
 
-import { ADD_TICKET } from "../constants";
+import { ADD_TICKET, UPDATE_TICKET } from "../constants";
 import "../styles.css";
 
 const priorityLabels = {
@@ -10,10 +10,20 @@ const priorityLabels = {
   3: "High",
 };
 
-const TicketForm = ({ dispatch }) => {
+const TicketForm = ({ dispatch, editingTicket }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("1");
+
+  useEffect(() => {
+    if (editingTicket) {
+      setTitle(editingTicket.title);
+      setDescription(editingTicket.description);
+      setPriority(editingTicket.priority);
+    } else {
+      clearForm();
+    }
+  }, [editingTicket]);
 
   const clearForm = () => {
     setTitle("");
@@ -27,14 +37,14 @@ const TicketForm = ({ dispatch }) => {
 
     // create new ticket object
     const newTicketData = {
-      id: UUID(),
+      id: editingTicket ? editingTicket.id : UUID(),
       title,
       description,
       priority,
     };
 
     dispatch({
-      type: ADD_TICKET,
+      type: editingTicket ? UPDATE_TICKET : ADD_TICKET,
       payload: newTicketData,
     });
 

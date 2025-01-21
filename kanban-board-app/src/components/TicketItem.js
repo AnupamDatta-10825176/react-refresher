@@ -1,4 +1,4 @@
-import { DELETE_TICKET } from "../constants";
+import { DELETE_TICKET, SET_EDITING_TICKET } from "../constants";
 
 const TicketItem = ({ ticket, dispatch }) => {
   const { id, title, description, priority } = ticket;
@@ -15,7 +15,12 @@ const TicketItem = ({ ticket, dispatch }) => {
 
       <h3>{title}</h3>
       <p>{description}</p>
-      <button className="button button-warning">Edit</button>
+      <button
+        className="button button-warning"
+        onClick={() => dispatch({ type: SET_EDITING_TICKET, payload: ticket })}
+      >
+        Edit
+      </button>
       <button
         className="button button-danger"
         onClick={() => dispatch({ type: DELETE_TICKET, payload: { id } })}
