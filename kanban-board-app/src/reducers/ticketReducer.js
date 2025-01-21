@@ -4,6 +4,7 @@ import {
   DELETE_TICKET,
   SET_EDITING_TICKET,
   CLEAR_EDITING_TICKET,
+  SET_SORTING,
 } from "../constants";
 
 export const ticketReducer = (state, action) => {
@@ -49,6 +50,12 @@ export const ticketReducer = (state, action) => {
         ...state,
         editingTicket: null,
       };
+    case SET_SORTING: {
+      return {
+        ...state,
+        sortPreference: action.payload,
+      };
+    }
     default:
       return state;
   }
