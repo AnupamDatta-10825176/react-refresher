@@ -1,41 +1,31 @@
 import { useState } from "react";
 
+import { useGeoLocation } from "./useGeolocation";
+
 const styleButton = { cursor: "pointer" };
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    error,
+    isLoading,
+    position: { lat, lng },
+    getPosition,
+  } = useGeoLocation();
+
   const [countClicks, setCountClicks] = useState(0);
-  const [position, setPosition] = useState({});
-  const [error, setError] = useState(null);
 
-  const { lat, lng } = position;
-
-  function getPosition() {
+  function handleCountClicks() {
     setCountClicks((prevCount) => prevCount + 1);
-
-    if (!navigator.geolocation) {
-      return setError("Your browser does not support geolocation");
-    }
-
-    setIsLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setPosition({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        });
-        setIsLoading(false);
-      },
-      (err) => {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    );
+    getPosition();
   }
 
   return (
     <div>
-      <button style={styleButton} onClick={getPosition} disabled={isLoading}>
+      <button
+        style={styleButton}
+        onClick={handleCountClicks}
+        disabled={isLoading}
+      >
         Get my Position
       </button>
 
