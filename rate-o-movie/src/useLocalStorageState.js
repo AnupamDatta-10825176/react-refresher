@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * @description get the item from localStorage and return them
+ * @description hook - get the item from localStorage and return them
  * along side the setter.
  * @param {*} initialState  iniital value of the state
  * @param {*} key   name that should be used to store data and

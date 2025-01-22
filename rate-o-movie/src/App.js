@@ -30,11 +30,6 @@ export default function App() {
 
   const [watched, setWatched] = useLocalStorageState([], "watchedMovies");
 
-  // const [watched, setWatched] = useState(() => {
-  //   const storedWatchedMovies = localStorage.getItem("watchedMovies");
-  //   return JSON.parse(storedWatchedMovies);
-  // });
-
   function handleSelectedID(movieID) {
     // if click on the same movie name close the selected movie detail
     setSelectedID((selectedID) => (selectedID === movieID ? null : movieID));
@@ -47,10 +42,6 @@ export default function App() {
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
   }
-
-  // useEffect(() => {
-  //   localStorage.setItem("watchedMovies", JSON.stringify(watched));
-  // }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
