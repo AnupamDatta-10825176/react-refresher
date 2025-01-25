@@ -1,0 +1,27 @@
+form {
+  border: 2px solid #512df0;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px 0px 10px 50px;
+  box-shadow: 2px 2px 15px rgba(114, 149, 237, 0.75);
+}
+
+.button-create {
+  background-color: #31937c;
+  color: black;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.button-create:hover {
+  color: white;
+}
+
+.todo-form {
+  display: block;
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 30px;
+  /* box-sizing: 5px; */
+  border: 1px solid #ccc;
+}

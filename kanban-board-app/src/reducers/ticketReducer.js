@@ -1,16 +1,23 @@
 import {
-  ADD_TICKET,
-  UPDATE_TICKET,
-  DELETE_TICKET,
-  SET_EDITING_TICKET,
+  // ADD_TICKET,
+  ADD_TODO,
   CLEAR_EDITING_TICKET,
+  DELETE_TICKET,
+  GET_TICKETS,
+  UPDATE_TICKET,
+  SET_EDITING_TICKET,
   SET_SORTING,
 } from "../constants";
 
 export const ticketReducer = (state, action) => {
   switch (action.type) {
-    case ADD_TICKET:
-      return { ...state, tickets: [...state.tickets, action.payload] };
+    // case ADD_TICKET:
+    //   return { ...state, tickets: [...state.tickets, action.payload] };
+    case ADD_TODO:
+      return { ...state, todos: [...state.todos, action.payload] };
+    case GET_TICKETS: {
+      return { ...state, todos: action.payload };
+    }
     case UPDATE_TICKET:
       return {
         ...state,
