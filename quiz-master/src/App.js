@@ -1,5 +1,11 @@
+import DataCounter from "./components/DataCounter";
+
 const App = () => {
-  return <div>Quiz Master - App</div>;
+  return (
+    <div>
+      <DataCounter />
+    </div>
+  );
 };
 
 export default App;
