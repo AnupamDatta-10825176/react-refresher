@@ -1,25 +1,25 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 import { counterReducer } from "../../reducers";
 
 const DataCounter = () => {
   const initialState = {
     count: 0,
+    step: 1,
   };
   //   const [count, setCount] = useState(0);
   const [state, dispatch] = useReducer(counterReducer, initialState);
-  const [step, setStep] = useState(1);
 
   // This mutates the date object.
   const date = new Date("june 21 2027");
   date.setDate(date.getDate() + state.count);
 
   const defineStep = (e) => {
-    setStep(Number(e.target.value));
+    dispatch({ type: "setStep", payload: Number(e.target.value) });
   };
 
   const dec = () => {
-    dispatch({ type: "dec", payload: step });
+    dispatch({ type: "dec", payload: state.step });
   };
 
   const defineCount = (e) => {
@@ -27,12 +27,11 @@ const DataCounter = () => {
   };
 
   const inc = () => {
-    dispatch({ type: "inc", payload: step });
+    dispatch({ type: "inc", payload: state.step });
   };
 
   const reset = () => {
     dispatch({ type: "reset" });
-    setStep(1);
   };
 
   return (
@@ -42,10 +41,10 @@ const DataCounter = () => {
           type="range"
           min="0"
           max="10"
-          value={step}
+          value={state.step}
           onChange={defineStep}
         />
-        <span>{step}</span>
+        <span>{state.step}</span>
       </div>
 
       <div>

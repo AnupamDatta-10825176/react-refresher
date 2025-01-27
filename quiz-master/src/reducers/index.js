@@ -6,8 +6,10 @@ function counterReducer(state, action) {
       return { ...state, count: state.count - action.payload };
     case "setCount":
       return { ...state, count: action.payload };
+    case "setStep":
+      return { ...state, step: action.payload };
     case "reset":
-      return { ...state, count: 0 };
+      return { ...state, count: 0, step: 1 };
     default:
       return state;
   }
