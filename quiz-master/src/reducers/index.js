@@ -11,7 +11,7 @@ function counterReducer(state, action) {
     case "reset":
       return { ...state, count: 0, step: 1 };
     default:
-      return state;
+      throw new Error("Unknown action selected");
   }
 }
 
