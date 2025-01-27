@@ -13,5 +13,6 @@
 | kanban-board-app | [kanban-board-app](https://github.com/AnupamDatta-10825176/react-refresher/tree/kanban-board-app)|
 | currency-convertor | [currency-convertor](https://github.com/AnupamDatta-10825176/react-refresher/tree/currency-convertor)|
 | text-expander | [text-expander](https://github.com/AnupamDatta-10825176/react-refresher/tree/text-expander)
+| quiz-master | [quiz-master](https://github.com/AnupamDatta-10825176/react-refresher/tree/quiz-master)
 
 </details>
