@@ -22,7 +22,7 @@ const initialState = {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { questions, status, index } = state;
+  const { questions, status, index, answer } = state;
   const numQuestions = questions.length;
 
   useEffect(() => {
@@ -42,7 +42,11 @@ const App = () => {
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <Question question={questions[index]} dispatch={dispatch} />
+          <Question
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
         )}
       </Main>
     </div>
