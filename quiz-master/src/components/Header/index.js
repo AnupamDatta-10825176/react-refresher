@@ -1,7 +1,7 @@
-const Header = () => {
+const Header = ({ quizName }) => {
   return (
     <header className="app-header">
-      <h1>Quiz Master</h1>
+      <h1>{quizName}r</h1>
     </header>
   );
 };

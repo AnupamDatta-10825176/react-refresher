@@ -15,4 +15,18 @@ function counterReducer(state, action) {
   }
 }
 
-export { counterReducer };
+function reducer(state, action) {
+  switch (action.type) {
+    case "dataReceived":
+      return { ...state, questions: action.payload, status: "ready" };
+    case "dataFailed":
+      console.log(action.payload);
+      return { ...state, status: "error" };
+    case "start":
+      return { ...state, status: "active" };
+    default:
+      throw new Error("Unknow error hit");
+  }
+}
+
+export { counterReducer, reducer };
