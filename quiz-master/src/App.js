@@ -15,6 +15,8 @@ const initialState = {
   status: "loading",
 
   index: 0,
+
+  answer: null,
 };
 
 const App = () => {
@@ -39,7 +41,9 @@ const App = () => {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && <Question question={questions[index]} />}
+        {status === "active" && (
+          <Question question={questions[index]} dispatch={dispatch} />
+        )}
       </Main>
     </div>
   );

@@ -6,7 +6,7 @@ const Question = (props) => {
   return (
     <div>
       <h4>{question}</h4>
-      <Options options={options} />
+      <Options options={options} dispatch={props.dispatch} />
     </div>
   );
 };

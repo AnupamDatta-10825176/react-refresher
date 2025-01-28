@@ -1,8 +1,16 @@
-const Options = ({ options }) => {
+const Options = ({ options, dispatch }) => {
+  const handleBtnClick = (optIndex) => {
+    dispatch({ type: "newAnswer", payload: optIndex });
+  };
+
   return (
     <div className="options">
-      {options.map((option) => (
-        <button className="btn btn-option" key={option}>
+      {options.map((option, index) => (
+        <button
+          className="btn btn-option"
+          key={option}
+          onClick={() => handleBtnClick(index)}
+        >
           {option}
         </button>
       ))}
