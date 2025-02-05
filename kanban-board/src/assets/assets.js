@@ -6,6 +6,7 @@ import freshArrival from "./fresh-arrival.jpg";
 import freshArrival2 from "./fresh-arrival2.jpg";
 import freshArrival3 from "./fresh-arrival3.jpg";
 import loader from "./loader.svg";
+import cancel from "./cancel.svg";
 
 export const assets = {
   logo,
@@ -16,4 +17,5 @@ export const assets = {
   freshArrival2,
   freshArrival3,
   loader,
+  cancel,
 };

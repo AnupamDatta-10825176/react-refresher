@@ -1,8 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 
+import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 
 const Navbar = () => {
+  const { setShowSearch } = useContext(ShopContext);
+
   return (
     <nav className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -33,6 +37,7 @@ const Navbar = () => {
           src={assets.search}
           alt="search-icon"
           className="w-5 cursor-pointer"
+          onClick={() => setShowSearch((prev) => !prev)}
         />
 
         <div className="group relative">
